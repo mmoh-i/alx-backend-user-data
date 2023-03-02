@@ -2,7 +2,9 @@
 import re
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(
+        fields: str, redaction: str,
+        message: str, separator: str) -> str:
     """
     Obfuscates the specified fields in
     a log message with a redaction string.
