@@ -5,9 +5,6 @@ from flask import jsonify, abort
 from api.v1.views import app_views
 
 
-app_views = Blueprint('index', __name__)
-
-
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
 def status() -> str:
     """ GET /api/v1/status
@@ -29,7 +26,7 @@ def stats() -> str:
     return jsonify(stats)
 
 
-@app_views.route('/unauthorized', methods=['GET'])
+@app_views.route('/unauthorized')
 def unauthorized():
     """ GET /api/v1/unauthorized
     Return:
@@ -38,7 +35,7 @@ def unauthorized():
     abort(401)
 
 
-@app_views.route('/forbidden', methods=['GET'])
+@app_views.route('/forbidden')
 def forbidden():
     """ GET /api/v1/forbidden
     Return:
