@@ -41,4 +41,4 @@ def forbidden():
     Return:
      - the http returns forbidden
     """
-    abort(404)
+    abort(403)
