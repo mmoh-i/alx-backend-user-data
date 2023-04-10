@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+"""
+This module contains the implementation of the Auth class, which is used to manage API authentication.
+
+The Auth class is the template for all authentication systems to be implemented. It provides three methods:
+- require_auth: to require authentication for a path
+- authorization_header: to get the authorization header from a request
+- current_user: to get the current user from a request
+"""
+
 from typing import List, TypeVar
 from flask import request
 
