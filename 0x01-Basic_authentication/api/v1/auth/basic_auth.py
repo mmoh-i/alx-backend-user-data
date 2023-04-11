@@ -5,6 +5,7 @@ to inherit from auth
 from api.v1.auth.auth import Auth
 from flask import request
 from typing import List, TypeVar
+from models.user import User
 import base64
 
 
