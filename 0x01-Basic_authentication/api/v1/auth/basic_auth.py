@@ -57,9 +57,8 @@ class BasicAuth(Auth):
         user_info = decoded_base64_authorization_header.partition(":")
         email = user_info[0]
         password = user_info[2]
-
         return email, password
-    
+ 
     def user_object_from_credentials(self, user_email: str, user_pwd: str) -> TypeVar('User'):
         """returns the User instance based on
         email and password"""
