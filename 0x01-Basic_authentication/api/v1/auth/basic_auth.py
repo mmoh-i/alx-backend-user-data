@@ -13,8 +13,8 @@ class BasicAuth(Auth):
     Class that implements Basic Authentication.
     Inherits from Auth.
     """
-    def extract_base64_authorization_header(
-        self,authorization_header: str) -> str:
+    def extract_base64_authorization_header(self,\
+                                            authorization_header: str) -> str:
         """method to return Base64 athorization header.
         """
         if authorization_header is None:
@@ -25,7 +25,8 @@ class BasicAuth(Auth):
             return None
         return authorization_header.split(' ')[1]
 
-    def decode_base64_authorization_header(self, base64_authorization_header: str) -> str:
+    def decode_base64_authorization_header(self,
+                                           base64_authorization_header: str) -> str:
         """method to decode vlue of base64 string"""
         if base64_authorization_header is None:
             return None
