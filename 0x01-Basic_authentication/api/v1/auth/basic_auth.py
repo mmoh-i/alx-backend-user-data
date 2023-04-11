@@ -2,6 +2,7 @@
 """Basic authentication module
 to inherit from auth
 """
+from api.v1.auth.auth import Auth
 from flask import request
 from typing import List, TypeVar
 import base64
