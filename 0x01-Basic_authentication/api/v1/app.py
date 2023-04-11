@@ -38,7 +38,13 @@ def before_request():
         if auth.current_user(request) is None:
             abort(403)
 
-         
+@app.errorhandler(404)
+def not_found(error) -> str:
+    """ Not found handler
+    """
+    return jsonify({"error": "Not found"}), 404
+
+  
 @app.errorhandler(401)
 def unauthorized(error):
     """ request unauthorized
