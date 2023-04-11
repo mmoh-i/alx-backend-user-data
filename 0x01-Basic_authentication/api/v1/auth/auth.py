@@ -26,7 +26,17 @@ class Auth:
         Returns:
             bool: Whether or not authentication is required.
         """
-        return False
+        if path is None:
+            return True
+        if excluded_paths is None or len(excluded_paths) == 0:
+            return True
+        for excluded_path in exluded_paths:
+            if path.startswith(excluded_path):
+                if excluded_path.endswith('/'):
+                    return False
+                elif path == excluded_path[:-1]:
+                    return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """Method to get the authorization header from a request.
@@ -36,7 +46,11 @@ class Auth:
         Returns:
             str: The authorization header value.
         """
-        return None
+        if request is None:
+            return None
+        if 'Authorization' not in request.headers:
+            return None
+        return request.headers['Authorization']
 
     def current_user(self, request=None) -> TypeVar('User'):
         """Method to get the current user from a request.
