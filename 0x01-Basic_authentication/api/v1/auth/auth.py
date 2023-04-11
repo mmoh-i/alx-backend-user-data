@@ -36,8 +36,8 @@ class Auth:
                     return False
                 elif path == excluded_path[:-1]:
                     return False
-                return True
-            return True
+   
+        return True
 
     def authorization_header(self, request=None) -> str:
         """Method to get the authorization header from a request.
