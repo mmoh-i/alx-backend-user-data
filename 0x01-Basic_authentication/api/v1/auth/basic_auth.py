@@ -25,7 +25,7 @@ class BasicAuth(Auth):
             return None
         return authorization_header.split(' ')[1]
 
-    def decode_base64_authorization_header(self,
+    def decode_base64_authorization_header(self,\
                                            base64_authorization_header: str) -> str:
         """method to decode vlue of base64 string"""
         if base64_authorization_header is None:
