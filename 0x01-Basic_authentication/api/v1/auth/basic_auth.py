@@ -89,12 +89,10 @@ class BasicAuth(Auth):
             auth_header)
         if encoded_credentils is None:
             return None
-  
         decoded_credentials = self.decode_base64_authorization_header(
             encoded_credentials)
         if decoded_credentials is None:
             return None
- 
         email, pwd = self.extract_user_credentials(decoded_credentials)
         user = self.user_object_from_credentials(email, pwd)
         return user
