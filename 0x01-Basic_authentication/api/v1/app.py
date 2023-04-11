@@ -35,8 +35,8 @@ def forbidden(error):
 
 @app.before_request
 def before_request():
-    """Checking if auth is none
-    returns nothing
+    """before Request to execute
+    before any route in the app.
     """
     excluded_path = [
         '/api/v1/status/',
