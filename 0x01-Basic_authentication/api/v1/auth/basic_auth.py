@@ -45,8 +45,9 @@ class BasicAuth(Auth):
         """eturns the user email and password
         from the Base64 decoded value.
         """
-        if decoded_base64_authorization_header is None 
-        and not isinstance(decoded_base64_authorization_header, str):
+        if decoded_base64_authorization_header is None:
+            return None, None
+        if not isinstance(decoded_base64_authorization_header, str):
             return None, None
         if ":" not in decoded_base64_authorization_header:
             return None, None
