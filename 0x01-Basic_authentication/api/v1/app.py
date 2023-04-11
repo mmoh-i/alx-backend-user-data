@@ -19,6 +19,25 @@ if auth_type == "auth":
     auth = Auth()
 
 
+@app.before_request
+def before_request():
+    """before Request to execute
+    before any route in the app.
+    """
+    excluded_path = [
+        '/api/v1/status/',
+        '/api/v1/unauthorized/',
+        '/api/v1/forbidden/'
+    ]
+
+    if auth is None:
+        return
+     if auth.require_auth(request.path, excluded_path):
+        if auth.authorization_header(request) is None:
+            abort(401)
+        if auth.current_user(request) is None:
+            abort(403)
+
 @app.errorhandler(401)
 def unauthorized(error):
     """ request unauthorized
@@ -31,25 +50,6 @@ def forbidden(error):
     """ request forbidden
     """
     return jsonify({"error": "Forbidden"}), 403
-
-
-@app.before_request
-def before_request():
-    """before Request to execute
-    before any route in the app.
-    """
-    excluded_path = [
-        '/api/v1/status/',
-        '/api/v1/unauthorized/',
-        '/api/v1/forbidden/'
-    ]
-    if auth is None:
-        return
-     if auth.require_auth(request.path, excluded_path):
-        if auth.authorization_header(request) is None:
-            abort(401)
-        if auth.current_user(request) is None:
-            abort(403)
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
