@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
-"""module for encrypting psskeys
+"""module for encrypting passwords.
 """
 import bcrypt
 
 
 def hash_password(password: str) -> bytes:
     """
-    ecnrypting pssword
+    Uses hashpw to encrypt password
     """
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
 
-def is_valid(hashed_password: bytes, password: string) -> bool:
+def is_valid(hashed_password: bytes, password: str) -> bool:
     """
-    validating the provided password to
-    match the hashed password.
+    Checks if a password is valid and matches the hashed pwd
     """
-    return bcypt.checkpw(password.encode('utf-8'), hashed_password)
+    return bcrypt.checkpw(password.encode('utf-8'), hashed_password)
