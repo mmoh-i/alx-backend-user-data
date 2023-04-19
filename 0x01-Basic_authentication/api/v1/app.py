@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """
 Route module for the API
@@ -59,31 +60,6 @@ def forbidden_req(error) -> str:
     """
     Handles the 403 error and jsonify the error
     403: User is authenticated but can't access a resource
-    """
-    return jsonify({"error": "Forbidden"}), 403
-
-
-if __name__ == "__main__":
-    host = getenv("API_HOST", "0.0.0.0")
-    port = getenv("API_PORT", "5000")
-    app.run(host=host, port=port)
-
-def not_found(error) -> str:
-    """ Not found handler
-    """
-    return jsonify({"error": "Not found"}), 404
-
-
-@app.errorhandler(401)
-def unauthorized(error) -> str:
-    """ request unauthorized
-    """
-    return jsonify({"error": "Unauthorized"}), 401
-
-
-@app.errorhandler(403)
-def forbidden(error) -> str:
-    """ request forbidden
     """
     return jsonify({"error": "Forbidden"}), 403
 
