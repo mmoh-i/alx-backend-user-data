@@ -1,33 +1,30 @@
 #!/usr/bin/env python3
-"""
-This module contains the implementation of the Auth class,
-which is used to manage API authentication.
-The Auth class is the template for all
-authentication systems to be implemented. It provides three methods:
-- require_auth: to require authentication for a path
-- authorization_header: to get the authorization header from a request
-- current_user: to get the current user from a request
-"""
-from typing import List, TypeVar
+"""authentication module"""
+
 from flask import request
-import re
+import fnmatch
+from typing import List, TypeVar
 
 
-class Auth:
-    """Class to manage API authentication.
-    This class is the template for all
-    authentication systems to be implemented.
+class Auth():
     """
+    Class to handle user authentication
+    """
+
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """Method to require authentication for a path.
-        Args:
-            path (str): The path to require authentication for.
-            excluded_paths (List[str]): A list of paths that are excluded
-            from authentication.
-        Returns:
-            bool: Whether or not authentication is required.
-        """
-         if path is None:
+        """Public method for require auth"""
+
+        # unaccepted_path = f"{path}/"
+        # if path is None:
+        #     return True
+        # elif excluded_paths is None or excluded_paths == []:
+        #     return True
+        # elif path in excluded_paths or unaccepted_path in excluded_paths:
+        #     return False
+        # return True
+
+        # Modification for final task 101
+        if path is None:
             return True
         elif excluded_paths is None or excluded_paths == []:
             return True
@@ -40,8 +37,7 @@ class Auth:
             return True
 
     def authorization_header(self, request=None) -> str:
-        """Method to get the authorization header from a request.
-        """
+        """A method to authorize the header requests"""
         if request is None:
             return None
         if not request.headers.get('Authorization'):
@@ -49,11 +45,5 @@ class Auth:
         return request.headers.get('Authorization')
 
     def current_user(self, request=None) -> TypeVar('User'):
-        """Method to get the current user from a request.
-        Args:
-            request (flask.Request, optional): The Flask request object.
-            Defaults to None.
-        Returns:
-            TypeVar('User'): The current user object.
-        """
+        """current user method"""
         return None
